@@ -1,5 +1,4 @@
 # -*- mode: Makefile; -*-
-# Copyright (c) 2011 Bitcoin Developers
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,10 +20,6 @@ LIBS= -dead_strip
 
 DEFS=-DMAC_OSX -DMSG_NOSIGNAL=0 -DBOOST_SPIRIT_THREADSAFE
 
-
-# osx 10.9 has changed the stdlib default to libc++. To prevent some link error, you may need to use libstdc++
-# CFLAGS += -stdlib=libstdc++
-
 # ppc doesn't work because we don't support big-endian
 CFLAGS += -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter \
     $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
@@ -45,13 +40,6 @@ OBJS= \
 
 # auto-generated dependencies:
 -include obj/*.P
-
-obj/%.o: %.cpp
-	$(CXX) -c $(CFLAGS) -MMD -MF $(@:%.o=%.d) -o $@ $<
-	@cp $(@:%.o=%.d) $(@:%.o=%.P); \
-	  sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
-	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
-	  rm -f $(@:%.o=%.d)
 
 obj/%.o: %.c
 	$(CC) -c $(CFLAGS) -fpermissive -MMD -MF $(@:%.o=%.d) -o $@ $<
