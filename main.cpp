@@ -1,7 +1,3 @@
-//
-// Created by zhuangxk on 2018/2/24.
-//
-
 #include "./googletest/include/gtest/gtest.h"
 
 int add(int a, int b) {

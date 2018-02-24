@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.7)
-project(GoodCodeEddy)
+project(HashFury)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -14,5 +14,5 @@ set(LIBRARIES
         pthread)
 
 set(SOURCE_FILES main.cpp)
-add_executable(GoodCodeEddy ${SOURCE_FILES})
-target_link_libraries(GoodCodeEddy ${LIBRARIES})
+add_executable(HashFury ${SOURCE_FILES})
+target_link_libraries(HashFury ${LIBRARIES})
