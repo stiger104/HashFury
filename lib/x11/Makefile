@@ -3,9 +3,6 @@
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# Mac OS X makefile for bitcoin
-# Originally by Laszlo Hanyecz (solar@heliacal.net)
-
 CXX=llvm-g++
 CC=llvm-gcc
 DEPSDIR=/usr/local
@@ -63,8 +60,10 @@ obj/%.o: %.c
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-hash: $(OBJS:obj/%=obj/%)
-	$(CXX) $(CFLAGS) -o $@ $(LIBPATHS) $^ obj/main.o $(LIBS)
+# this is for static lib generate
+X_HASH_LIB = libxhash.a
+$(X_HASH_LIB): $(OBJS)
+	ar rv ${X_HASH_LIB} $?
 
 clean:
 	-rm -f obj/*.o
@@ -73,5 +72,6 @@ clean:
 	-rm -f obj-test/*.P
 	-rm -f obj/build.h
 	-rm -f main.o
+	-rm -f *.out *.a
 
 FORCE:
