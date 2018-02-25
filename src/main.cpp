@@ -5,15 +5,15 @@
 #define END(a)              ((char*)&((&(a))[1]))
 using namespace std;
 
-string xHash(uint256 n1, uint256 n2)
+string xHash(uint256 n)
 {
     cout << "Check X11 Hash: \n";
-    uint256 res = HashX11(BEGIN(n1), END(n2));
+    uint256 res = HashX11(BEGIN(n), END(n));
     return res.GetHex();
 }
 
 TEST(test1, x11){
-EXPECT_EQ("40502f215b739d699765dfe23e1b78a794a3b78c1f99f10ecc33df8d13875769", xHash(100, 200));
+    EXPECT_EQ("f2c01298a651a1bf9e736738c6cd9b493e04c52507510cbed0640d7b0c6e8428", xHash(100));
 }
 
 GTEST_API_ int main(int argc, char **argv) {

@@ -6,6 +6,7 @@
 *.lo
 *.o
 *.obj
+*.P
 
 # Precompiled Headers
 *.gch
@@ -35,3 +36,4 @@ cmake-build-debug/
 Makefile
 .idea
 build
+lib/x11/obj
